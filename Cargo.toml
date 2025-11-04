@@ -1,0 +1,54 @@
+[package]
+name = "symwalker"
+version = "1.0.0"
+edition = "2021"
+description = "Advanced ELF/Mach-O binary scanner with intelligent debug symbol detection and analysis"
+repository = "https://github.com/19h/symwalker"
+license = "MIT"
+authors = ["Kenan Sulayman"]
+
+[[bin]]
+name = "symwalker"
+path = "src/main.rs"
+
+[dependencies]
+# Binary parsing
+goblin = "0.8"
+object = { version = "0.36", features = ["read_core", "elf", "macho", "unaligned"] }
+memmap2 = "0.9"
+
+# File system
+walkdir = "2.5"
+
+# CLI
+clap = { version = "4.5", features = ["derive", "cargo"] }
+anyhow = "1.0"
+thiserror = "1.0"
+
+# Output formatting
+colored = "2.1"
+atty = "0.2"
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# Time handling
+chrono = { version = "0.4", features = ["serde"] }
+
+# HTTP for debuginfod
+reqwest = { version = "0.12", features = ["blocking", "rustls-tls"], default-features = false }
+
+# UUID for Mach-O
+uuid = "1.10"
+
+# Hashing for build-id
+sha2 = "0.10"
+hex = "0.4"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+strip = false
+
