@@ -1,6 +1,6 @@
 [package]
 name = "symwalker"
-version = "1.0.0"
+version = "2.0.0"
 edition = "2021"
 description = "Advanced ELF/Mach-O binary scanner with intelligent debug symbol detection and analysis"
 repository = "https://github.com/19h/symwalker"
